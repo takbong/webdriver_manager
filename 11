@@ -1,0 +1,20 @@
+driver.get("https://www.instagram.com/lilyiu_/following/")
+time.sleep(3)
+
+#초기 변수 세팅
+before_height = -1
+now_height = -2
+
+try:
+    #스크롤 전/후 의 높이가 같을 때까지 스크롤 진행
+    while before_height != now_height:
+        before_height = now_height
+        now_height = driver.execute_script("return document.querySelector('._aano').scrollTop;")
+
+        driver.execute_script("document.querySelector('._aano').scrollTo(0, document.querySelector('._aano').scrollHeight)")
+        time.sleep(1)
+
+    print('following crawling end')
+
+except:
+    print('error scroll')
